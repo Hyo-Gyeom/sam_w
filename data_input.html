@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼국지 무장 전투력 계산기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔️ 삼국지 무장 전투력 계산기</h1>
+            <p>무장의 스탯과 장비를 입력하여 전투력을 계산해보세요!</p>
+        </header>
+
+        <!-- 네비게이션 -->
+        <div class="navigation">
+            <div class="nav-buttons">
+                <a href="/" class="btn btn-secondary">메인 계산기</a>
+                <a href="/list" class="btn btn-secondary">저장된 무장 목록</a>
+            </div>
+        </div>
+
+        <main>
+            <div class="calculator">
+                <!-- 왼쪽 섹션 -->
+                <div class="left-section">
+                    <!-- 무장 기본 정보 -->
+                    <div class="section">
+                        <h2>🏛️ 무장 기본 정보</h2>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="generalName">무장 이름</label>
+                                <input type="text" id="generalName" placeholder="예: 관우" value="관우">
+                            </div>
+                            <div class="input-group">
+                                <label for="generalYear">년도</label>
+                                <input type="number" id="generalYear" placeholder="예: 184" min="100" max="999" value="184">
+                            </div>
+                            <div class="input-group">
+                                <label for="generalGrade">등급</label>
+                                <select id="generalGrade">
+                                    <option value="1">1등급</option>
+                                    <option value="2">2등급</option>
+                                    <option value="3">3등급</option>
+                                    <option value="4">4등급</option>
+                                    <option value="5" selected>5등급</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="level">레벨</label>
+                                <input type="number" id="level" min="1" max="100" value="60">
+                            </div>
+                            <div class="input-group power-input">
+                                <label for="power">전투력</label>
+                                <input type="number" id="power" min="0" max="99999" value="0" placeholder="전투력 입력">
+                            </div>
+                        </div>
+
+                        <div class="total-stats-summary base-stats">
+                            <h3>총 스탯</h3>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="label">통솔</span>
+                                    <span class="value" id="summaryCommand">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">무력</span>
+                                    <span class="value" id="summaryForce">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">지력</span>
+                                    <span class="value" id="summaryIntelligence">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">정치력</span>
+                                    <span class="value" id="summaryPolitics">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">매력</span>
+                                    <span class="value" id="summaryCharm">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-grid base-stats">
+                            <h3>기본 스탯</h3>
+                            <div class="stat-row">
+                                <div class="stat-item">
+                                    <label for="command">통솔</label>
+                                    <input type="number" id="command" min="1" max="200" value="95">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="force">무력</label>
+                                    <input type="number" id="force" min="1" max="200" value="98">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="intelligence">지력</label>
+                                    <input type="number" id="intelligence" min="1" max="200" value="76">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="politics">정치력</label>
+                                    <input type="number" id="politics" min="1" max="200" value="62">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="charm">매력</label>
+                                    <input type="number" id="charm" min="1" max="200" value="87">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="levelup-stats-grid levelup-stats">
+                            <h3>기본 스탯과 레벨업 스탯 합계</h3>
+                            <div class="stat-row">
+                                <div class="stat-item">
+                                    <label for="levelupCommand">통솔</label>
+                                    <input type="number" id="levelupCommand" min="1" max="250" value="95">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="levelupForce">무력</label>
+                                    <input type="number" id="levelupForce" min="1" max="250" value="98">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="levelupIntelligence">지력</label>
+                                    <input type="number" id="levelupIntelligence" min="1" max="250" value="76">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="levelupPolitics">정치력</label>
+                                    <input type="number" id="levelupPolitics" min="1" max="250" value="62">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="levelupCharm">매력</label>
+                                    <input type="number" id="levelupCharm" min="1" max="250" value="87">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="additional-stats-grid add-stats">
+                            <h3>추가 스탯</h3>
+                            <div class="stat-row">
+                                <div class="stat-item">
+                                    <label for="addCommand">통솔</label>
+                                    <input type="number" id="addCommand" min="0" max="50" value="0">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="addForce">무력</label>
+                                    <input type="number" id="addForce" min="0" max="50" value="0">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="addIntelligence">지력</label>
+                                    <input type="number" id="addIntelligence" min="0" max="50" value="0">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="addPolitics">정치력</label>
+                                    <input type="number" id="addPolitics" min="0" max="50" value="0">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="addCharm">매력</label>
+                                    <input type="number" id="addCharm" min="0" max="50" value="0">
+                                </div>
+                            </div>
+                        </div>                            
+                        <div class="skills-grid">
+                            <h3>스킬</h3>
+                            <div class="skill-row">
+                                <div class="skill-item">
+                                    <label for="skill1">스킬 1</label>
+                                    <input type="text" id="skill1" placeholder="스킬 이름" value="">
+                                </div>
+                                <div class="skill-item">
+                                    <label for="skill2">스킬 2</label>
+                                    <input type="text" id="skill2" placeholder="스킬 이름" value="">
+                                </div>
+                                <div class="skill-item">
+                                    <label for="skill3">스킬 3</label>
+                                    <input type="text" id="skill3" placeholder="스킬 이름" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 오른쪽 섹션 -->
+                <div class="right-section">
+                    <!-- 장비 정보 -->
+                    <div class="section">
+                        <h2>⚔️ 장비 정보</h2>
+                    
+                        <!-- 무기 -->
+                        <div class="equipment-section">
+                            <div class="equipment-header">
+                                <div class="equipment-title-row">
+                                    <h3>🗡️ 무기</h3>
+                                    <div class="input-group">
+                                        <input type="text" id="weaponName" placeholder="무기 이름" value="">
+                                    </div>
+                                    <div class="input-group">
+                                     <select id="weaponGrade">
+                                         <option value="1">1등급</option>
+                                         <option value="2">2등급</option>
+                                         <option value="3">3등급</option>
+                                         <option value="4">4등급</option>
+                                         <option value="5" selected>5등급</option>
+                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-bonus">
+                                <div class="bonus-item">
+                                    <label>통솔</label>
+                                    <input type="number" id="weaponCommand" min="0" max="50" value="15">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>무력</label>
+                                    <input type="number" id="weaponForce" min="0" max="50" value="25">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>지력</label>
+                                    <input type="number" id="weaponIntelligence" min="0" max="50" value="5">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>정치력</label>
+                                    <input type="number" id="weaponPolitics" min="0" max="50" value="0">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>매력</label>
+                                    <input type="number" id="weaponCharm" min="0" max="50" value="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 방패 -->
+                        <div class="equipment-section">
+                            <div class="equipment-header">
+                                <div class="equipment-title-row">
+                                    <h3>🛡️ 방패</h3>
+                                    <div class="input-group">
+                                        <input type="text" id="shieldName" placeholder="방패 이름" value="">
+                                    </div>
+                                    <div class="input-group">
+                                     <select id="shieldGrade">
+                                         <option value="1">1등급</option>
+                                         <option value="2">2등급</option>
+                                         <option value="3">3등급</option>
+                                         <option value="4">4등급</option>
+                                         <option value="5" selected>5등급</option>
+                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-bonus">
+                                <div class="bonus-item">
+                                    <label>통솔</label>
+                                    <input type="number" id="shieldCommand" min="0" max="50" value="8">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>무력</label>
+                                    <input type="number" id="shieldForce" min="0" max="50" value="5">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>지력</label>
+                                    <input type="number" id="shieldIntelligence" min="0" max="50" value="3">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>정치력</label>
+                                    <input type="number" id="shieldPolitics" min="0" max="50" value="2">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>매력</label>
+                                    <input type="number" id="shieldCharm" min="0" max="50" value="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 말 -->
+                        <div class="equipment-section">
+                            <div class="equipment-header">
+                                <div class="equipment-title-row">
+                                    <h3>🐎 말</h3>
+                                    <div class="input-group">
+                                        <input type="text" id="horseName" placeholder="말 이름" value="">
+                                    </div>
+                                    <div class="input-group">
+                                     <select id="horseGrade">
+                                         <option value="1">1등급</option>
+                                         <option value="2">2등급</option>
+                                         <option value="3">3등급</option>
+                                         <option value="4">4등급</option>
+                                         <option value="5" selected>5등급</option>
+                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-bonus">
+                                <div class="bonus-item">
+                                    <label>통솔</label>
+                                    <input type="number" id="horseCommand" min="0" max="50" value="12">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>무력</label>
+                                    <input type="number" id="horseForce" min="0" max="50" value="8">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>지력</label>
+                                    <input type="number" id="horseIntelligence" min="0" max="50" value="2">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>정치력</label>
+                                    <input type="number" id="horsePolitics" min="0" max="50" value="1">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>매력</label>
+                                    <input type="number" id="horseCharm" min="0" max="50" value="6">
+                                </div>                                
+                            </div>
+                        </div>
+
+                        <!-- 투구 -->
+                        <div class="equipment-section">
+                            <div class="equipment-header">
+                                <div class="equipment-title-row">
+                                    <h3>⛑️ 투구</h3>
+                                    <div class="input-group">
+                                        <input type="text" id="helmetName" placeholder="투구 이름" value="">
+                                    </div>
+                                    <div class="input-group">
+                                     <select id="helmetGrade">
+                                         <option value="1">1등급</option>
+                                         <option value="2">2등급</option>
+                                         <option value="3">3등급</option>
+                                         <option value="4">4등급</option>
+                                         <option value="5" selected>5등급</option>
+                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-bonus">
+                                <div class="bonus-item">
+                                    <label>통솔</label>
+                                    <input type="number" id="helmetCommand" min="0" max="50" value="6">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>무력</label>
+                                    <input type="number" id="helmetForce" min="0" max="50" value="4">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>지력</label>
+                                    <input type="number" id="helmetIntelligence" min="0" max="50" value="8">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>정치력</label>
+                                    <input type="number" id="helmetPolitics" min="0" max="50" value="3">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>매력</label>
+                                    <input type="number" id="helmetCharm" min="0" max="50" value="4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 갑옷 -->
+                        <div class="equipment-section">
+                            <div class="equipment-header">
+                                <div class="equipment-title-row">
+                                    <h3>🛡️ 갑옷</h3>
+                                    <div class="input-group">
+                                        <input type="text" id="armorName" placeholder="갑옷 이름" value="">
+                                    </div>
+                                    <div class="input-group">
+                                     <select id="armorGrade">
+                                         <option value="1">1등급</option>
+                                         <option value="2">2등급</option>
+                                         <option value="3">3등급</option>
+                                         <option value="4">4등급</option>
+                                         <option value="5" selected>5등급</option>
+                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-bonus">
+                                <div class="bonus-item">
+                                    <label>통솔</label>
+                                    <input type="number" id="armorCommand" min="0" max="50" value="5">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>무력</label>
+                                    <input type="number" id="armorForce" min="0" max="50" value="6">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>지력</label>
+                                    <input type="number" id="armorIntelligence" min="0" max="50" value="2">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>정치력</label>
+                                    <input type="number" id="armorPolitics" min="0" max="50" value="1">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>매력</label>
+                                    <input type="number" id="armorCharm" min="0" max="50" value="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 신발 -->
+                        <div class="equipment-section">
+                            <div class="equipment-header">
+                                <div class="equipment-title-row">
+                                    <h3>👢 신발</h3>
+                                    <div class="input-group">
+                                        <input type="text" id="bootsName" placeholder="신발 이름" value="">
+                                    </div>
+                                    <div class="input-group">
+                                     <select id="bootsGrade">
+                                         <option value="1">1등급</option>
+                                         <option value="2">2등급</option>
+                                         <option value="3">3등급</option>
+                                         <option value="4">4등급</option>
+                                         <option value="5" selected>5등급</option>
+                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-bonus">
+                                <div class="bonus-item">
+                                    <label>통솔</label>
+                                    <input type="number" id="bootsCommand" min="0" max="50" value="3">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>무력</label>
+                                    <input type="number" id="bootsForce" min="0" max="50" value="2">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>지력</label>
+                                    <input type="number" id="bootsIntelligence" min="0" max="50" value="4">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>정치력</label>
+                                    <input type="number" id="bootsPolitics" min="0" max="50" value="2">
+                                </div>
+                                <div class="bonus-item">
+                                    <label>매력</label>
+                                    <input type="number" id="bootsCharm" min="0" max="50" value="2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 저장 버튼 섹션 -->
+                    <div class="save-section">
+                        <button id="saveGeneral" class="btn btn-primary">현재 무장 저장</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <footer>
+            <p>© 2024 삼국지 무장 전투력 계산기</p>
+        </footer>
+    </div>
+
+    <script src="data_input.js"></script>
+</body>
+</html>

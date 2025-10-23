@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>저장된 무장 목록 - 삼국지 무장 전투력 계산기</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💾 저장된 무장 목록</h1>
+            <p>저장된 무장들을 확인하고 관리하세요!</p>
+        </header>
+
+        <main>
+            <div class="list-section">
+                <div class="section">
+                    <div class="table-container">
+                        <table class="generals-table">
+                            <thead>
+                                <tr>
+                                    <th>무장명</th>
+                                    <th>등급</th>
+                                    <th>레벨</th>
+                                    <th>전투력</th>
+                                    <th>통솔</th>
+                                    <th>무력</th>
+                                    <th>지력</th>
+                                    <th>정치력</th>
+                                    <th>매력</th>
+                                    <th>작업</th>
+                                </tr>
+                            </thead>
+                            <tbody id="generalsTableBody">
+                                <!-- 저장된 무장 데이터가 여기에 표시됩니다 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-actions">
+                        <button id="clearAll" class="btn btn-danger">전체 삭제</button>
+                        <a href="/" class="btn btn-secondary">계산기로 돌아가기</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 삼국지 무장 전투력 계산기</p>
+        </footer>
+    </div>
+
+    <script src="list.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼국지 무장 전투력 계산기</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔️ 삼국지 무장 전투력 계산기</h1>
+            <p>장수, 스킬, 장비 정보를 입력하여 전투력을 계산해보세요!</p>
+        </header>
+
+        <!-- 네비게이션 -->
+        <div class="navigation">
+            <div class="nav-buttons">
+                <a href="/data-input" class="btn btn-secondary">데이터 입력</a>
+                <a href="/list" class="btn btn-secondary">저장된 무장 목록</a>
+            </div>
+        </div>
+
+        <main>
+            <div class="calculator">
+                <!-- 왼쪽 섹션: 장수 정보 -->
+                <div class="left-section">
+                    <div class="section">
+                        <h2>🏛️ 장수 정보</h2>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="generalName">장수 이름</label>
+                                <input type="text" id="generalName" placeholder="예: 관우" value="관우">
+                            </div>
+                            <div class="input-group">
+                                <label for="generalGrade">등급</label>
+                                <select id="generalGrade">
+                                    <option value="1">1등급</option>
+                                    <option value="2">2등급</option>
+                                    <option value="3">3등급</option>
+                                    <option value="4">4등급</option>
+                                    <option value="5" selected>5등급</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="level">레벨</label>
+                                <input type="number" id="level" min="1" max="100" value="60">
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <h3>기본 스탯</h3>
+                            <div class="stat-row">
+                                <div class="stat-item">
+                                    <label for="command">통솔</label>
+                                    <input type="number" id="command" min="1" max="200" value="95">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="force">무력</label>
+                                    <input type="number" id="force" min="1" max="200" value="98">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="intelligence">지력</label>
+                                    <input type="number" id="intelligence" min="1" max="200" value="76">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="politics">정치력</label>
+                                    <input type="number" id="politics" min="1" max="200" value="62">
+                                </div>
+                                <div class="stat-item">
+                                    <label for="charm">매력</label>
+                                    <input type="number" id="charm" min="1" max="200" value="87">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 오른쪽 섹션: 스킬 및 장비 -->
+                <div class="right-section">
+                    <!-- 스킬 정보 -->
+                    <div class="section">
+                        <h2>⚡ 스킬 정보</h2>
+                        <div class="skills-grid">
+                            <div class="skill-row">
+                                <div class="skill-item">
+                                    <label for="skill1">스킬 1</label>
+                                    <input type="text" id="skill1" placeholder="스킬 이름" value="">
+                                </div>
+                                <div class="skill-item">
+                                    <label for="skill2">스킬 2</label>
+                                    <input type="text" id="skill2" placeholder="스킬 이름" value="">
+                                </div>
+                                <div class="skill-item">
+                                    <label for="skill3">스킬 3</label>
+                                    <input type="text" id="skill3" placeholder="스킬 이름" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 장비 정보 -->
+                    <div class="section">
+                        <h2>⚔️ 장비 정보</h2>
+                        <div class="equipment-grid">
+                            <div class="equipment-item">
+                                <label for="weaponName">무기</label>
+                                <input type="text" id="weaponName" placeholder="무기 이름" value="">
+                            </div>
+                            <div class="equipment-item">
+                                <label for="armorName">갑옷</label>
+                                <input type="text" id="armorName" placeholder="갑옷 이름" value="">
+                            </div>
+                            <div class="equipment-item">
+                                <label for="helmetName">투구</label>
+                                <input type="text" id="helmetName" placeholder="투구 이름" value="">
+                            </div>
+                            <div class="equipment-item">
+                                <label for="shieldName">방패</label>
+                                <input type="text" id="shieldName" placeholder="방패 이름" value="">
+                            </div>
+                            <div class="equipment-item">
+                                <label for="horseName">말</label>
+                                <input type="text" id="horseName" placeholder="말 이름" value="">
+                            </div>
+                            <div class="equipment-item">
+                                <label for="bootsName">신발</label>
+                                <input type="text" id="bootsName" placeholder="신발 이름" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 계산 결과 섹션 -->
+            <div class="result-section">
+                <div class="section">
+                    <h2>📊 계산 결과</h2>
+                    <div class="result-grid">
+                        <div class="result-card">
+                            <h3>총 스탯</h3>
+                            <div class="stats-summary">
+                                <div class="stat-item">
+                                    <span class="label">통솔</span>
+                                    <span class="value" id="totalCommand">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="label">무력</span>
+                                    <span class="value" id="totalForce">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="label">지력</span>
+                                    <span class="value" id="totalIntelligence">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="label">정치력</span>
+                                    <span class="value" id="totalPolitics">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="label">매력</span>
+                                    <span class="value" id="totalCharm">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h3>전투력</h3>
+                            <div class="power-display">
+                                <div class="power-value" id="totalPower">0</div>
+                                <div class="power-rank" id="powerRank">D등급</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 삼국지 무장 전투력 계산기</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
